@@ -1,38 +1,137 @@
-.App {
+* {
+  padding: 0px;
+  margin: 0px;
+  font-family: popins;
+}
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.Bg-color {
+  display: flex !important;
+  flex-direction: row !important;
+}
+.bg {
+  background-color: rgba(230, 89, 223, 0.763);
+  border-radius: 10px;
+  width: 750px !important;
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  height: 350px !important;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column !important;
+}
+.button-Bg {
+  background-color: white !important;
+  color: gray !important;
+  border: 1px solid rgba(230, 89, 223, 0.763) !important;
+}
+.heading {
+  color: rgba(128, 128, 128, 0.644);
+  margin-bottom: 10px;
+}
+.app-heading {
+  margin-top: 100px;
+  color: rgba(230, 89, 223, 0.763);
+}
+.main-component {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  width: 750px;
+  margin-top: 2px;
+  align-items: center;
+}
+.forget-password {
+  font-size: smaller;
+  color: gray;
+  cursor: pointer;
+}
+.forget-password:hover {
+  color: rgba(230, 89, 223, 0.763);
+}
+.button {
+  margin: 20px 0 2px 15px;
+}
+.register {
+  font-size: 12px;
+  margin-left: 15px;
+  padding: 5px;
+  color: rgba(128, 128, 128, 0.69);
+}
+.register-new {
+  margin-left: -8px;
+  color: rgba(128, 128, 128, 0.69);
+  font-size: 14px;
+}
+span {
+  color: rgba(230, 89, 223, 0.763);
+  cursor: pointer;
+}
+.success {
+  animation-name: grow-shrink;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  margin-top: 10px;
+  color: rgba(230, 89, 223, 0.763);
+}
+@keyframes grow-shrink {
+  40% {
+    transform: scale(1.5);
+  }
+  80% {
+    transform: scale(1);
+  }
+}
+.container-otp {
+  margin-top: 25px;
+  display: flex;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+}
+.otp-heading {
+  color: rgba(230, 89, 223, 0.763);
+}
+.otp-desp {
+  color: rgba(128, 128, 128, 0.69);
+  font-size: smaller;
+  margin: 12px 0 2px 0;
+}
+.otp-input {
+  width: 50px;
+  height: auto;
+  padding: 15px !important;
+}
+.otp-verify {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0 0 0;
+}
+.Reg {
+  display: flex;
+  flex-direction: row;
+  margin-left: 120px;
+}
+.password {
+  color: rgba(128, 128, 128, 0.778);
+  font-size: smaller;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.logOut {
+  display: flex;
+  margin: 20px 0 0 0;
 }
