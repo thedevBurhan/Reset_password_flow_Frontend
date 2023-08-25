@@ -52,7 +52,7 @@ const ChangePassword = () => {
               type="password"
               variant="outlined"
               placeholder="Enter your new password"
-              value={confirmPassword}
+              value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
               required
             />
@@ -65,9 +65,9 @@ const ChangePassword = () => {
               type="password"
               variant="outlined"
               placeholder="Confirm password"
-              value={newPassword}
+              value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              
+              required
             />
              {message && <div className="alert alert-info">{message}</div>}
           </CardContent>
