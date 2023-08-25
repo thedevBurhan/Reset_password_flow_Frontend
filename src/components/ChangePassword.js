@@ -67,7 +67,7 @@ const ChangePassword = () => {
               placeholder="Confirm password"
               value={newPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              required
+              
             />
              {message && <div className="alert alert-info">{message}</div>}
           </CardContent>
