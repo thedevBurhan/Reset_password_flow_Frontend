@@ -1,15 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Base from "../Base/Base";
 import Card from "@mui/material/Card";
-import { Button, CardContent, TextField } from "@mui/material";
+import { Button, CardContent, IconButton, Snackbar, TextField } from "@mui/material";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import * as yup from "yup";
 import { useFormik } from "formik";
-import { toast } from "react-toastify";
 
 // form validation
 export const filedValidationScheme = yup.object({
-  name: yup.string().required("Please fill your name"),
   email: yup.string().required("Please fill your email"),
   password: yup.string().required("Please fill password"),
 });
@@ -18,27 +16,58 @@ const Login = () => {
   const { handleSubmit, values, handleChange, handleBlur, touched, errors } =
     useFormik({
       initialValues: {
-        name: "",
         email: "",
         password: "",
       },
       validationSchema: filedValidationScheme,
       onSubmit: (userInfo) => {
         // console.log("onsubmit",userInfo)
-        // handleLogin(userInfo);
-        toast("It will take Few Seconds to Load....", {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          icon: "😶‍🌫️",
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
+        handleLogin(userInfo);
       },
     });
+      // ---------------------------------------------------------------------------------------------------------------------------------------
+  // pop-up message
+  const [open, setOpen] = useState(false);
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+    history.push("/SuccessfullMessage");
+  };
+  const action = (
+    <React.Fragment>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        close
+      </IconButton>
+    </React.Fragment>
+  );
+  // pop-up end------------------------------------------------------------------------------------------------------------------------
+  const handleLogin = async (userInfo) => {
+    const res = await fetch(
+      `https://reset-password-flow-backend.vercel.app/users/login`,
+      {
+        method: "POST",
+        body: JSON.stringify(userInfo),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const data = await res.json();
+     console.log(data)   
+    handleClick();
+  };
   return (
     <Base title={"Login Your Account"}>
       <div className="container">
@@ -96,7 +125,7 @@ const Login = () => {
             <div className="button">
               <Button
                 className="button-Bg"
-                onClick={() => history.push("/SuccessfullMessage")}
+                type="submit"
                 variant="outlined"
               >
                 Login
@@ -104,6 +133,13 @@ const Login = () => {
             </div>
           </form>
         </Card>
+        <Snackbar
+          open={open}
+          autoHideDuration={3000}
+          onClose={handleClose}
+          message="Login Successfully"
+          action={action}
+        />
       </div>
     </Base>
   );

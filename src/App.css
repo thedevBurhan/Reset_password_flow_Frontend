@@ -14,8 +14,9 @@ header {
   flex-direction: row !important;
 }
 .bg {
-  background-color: rgba(230, 89, 223, 0.763);
+  background-color: #9754cb;
   border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.437) 0px 3px 8px;
   width: 750px !important;
   text-align: center;
   height: 350px !important;
@@ -33,35 +34,38 @@ header {
 }
 .button-Bg {
   background-color: white !important;
-  color: gray !important;
-  border: 1px solid rgba(230, 89, 223, 0.763) !important;
+  color: #909090 !important;
+  border: 1px solid #deacf5 !important;
 }
 .heading {
-  color: rgba(128, 128, 128, 0.644);
+  color: #909090;
   margin-bottom: 10px;
 }
 .app-heading {
   margin-top: 100px;
-  color: rgba(230, 89, 223, 0.763);
+  color: #deacf5;
 }
 .main-component {
   display: flex;
+  
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 .container {
   width: 750px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 15px;
   margin-top: 2px;
   align-items: center;
 }
 .forget-password {
   font-size: smaller;
-  color: gray;
+  color: #909090;
   cursor: pointer;
 }
 .forget-password:hover {
-  color: rgba(230, 89, 223, 0.763);
+  color: #deacf5;
 }
 .button {
   margin: 20px 0 2px 15px;
@@ -70,15 +74,15 @@ header {
   font-size: 12px;
   margin-left: 15px;
   padding: 5px;
-  color: rgba(128, 128, 128, 0.69);
+  color: #909090;
 }
 .register-new {
   margin-left: -8px;
-  color: rgba(128, 128, 128, 0.69);
+  color: #909090;
   font-size: 14px;
 }
 span {
-  color: rgba(230, 89, 223, 0.763);
+  color: #deacf5;
   cursor: pointer;
 }
 .success {
@@ -86,7 +90,7 @@ span {
   animation-duration: 5s;
   animation-iteration-count: infinite;
   margin-top: 10px;
-  color: rgba(230, 89, 223, 0.763);
+  color: #deacf5;
 }
 @keyframes grow-shrink {
   40% {
@@ -103,10 +107,10 @@ span {
   align-items: flex-start !important;
 }
 .otp-heading {
-  color: rgba(230, 89, 223, 0.763);
+  color: #deacf5;
 }
 .otp-desp {
-  color: rgba(128, 128, 128, 0.69);
+  color: #909090;
   font-size: smaller;
   margin: 12px 0 2px 0;
 }
@@ -127,7 +131,7 @@ span {
   margin-left: 120px;
 }
 .password {
-  color: rgba(128, 128, 128, 0.778);
+  color: #909090;
   font-size: smaller;
 }
 

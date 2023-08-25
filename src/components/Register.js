@@ -1,11 +1,10 @@
 import React from "react";
 import Base from "../Base/Base";
-import { Button, Card, CardContent, Checkbox, TextField } from "@mui/material";
+import { Button, Card, CardContent, Checkbox, IconButton, Snackbar, TextField } from "@mui/material";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import * as yup from "yup";
-import { toast } from "react-toastify";
-
 import { useFormik } from "formik";
+import { useState } from "react";
 // form validation
 export const filedValidationScheme = yup.object({
   name: yup.string().required("Please fill your name"),
@@ -23,21 +22,54 @@ const Register = () => {
       validationSchema: filedValidationScheme,
       onSubmit: (userInfo) => {
         // console.log("onsubmit",userInfo)
-        Register();
-        toast("It will take Few Seconds to Load....", {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          icon: "😶‍🌫️",
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
+        handleSignIn(userInfo);
       },
     });
+// ---------------------------------------------------------------------------------------------------------------------------------------
+  // pop-up message
+  const [open, setOpen] = useState(false);
+  const handleClick = () => {
+    setOpen(true);
+  };
 
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+    history.push("/SuccessfullMessage");
+  };
+  const action = (
+    <React.Fragment>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        close
+      </IconButton>
+    </React.Fragment>
+  );
+  // pop-up end------------------------------------------------------------------------------------------------------------------------
+
+  // fetch
+  const handleSignIn=async(userInfo)=>{
+    const res=await fetch(
+      `https://reset-password-flow-backend.vercel.app/users/signup`,
+      {
+        method: "POST",
+        body: JSON.stringify(userInfo),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const data= await  res.json();
+    // console.log(data.data.name);
+    handleClick();
+  }
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
   const history = useHistory();
   return (
@@ -50,7 +82,7 @@ const Register = () => {
               <TextField
                 sx={{ width: "300px" }}
                 id="outlined-basic"
-                label="User_Name"
+                label="Enter Name"
                 variant="outlined"
                 name="name"
                 type="name"
@@ -102,7 +134,7 @@ const Register = () => {
             <div className="Reg">
               <Button
                 className="button-Bg"
-                onClick={() => history.push("/SuccessfullMessage")}
+                type="submit"
                 variant="outlined"
               >
                 Register
@@ -120,6 +152,13 @@ const Register = () => {
             </Button>
           </div>
         </Card>
+        <Snackbar
+          open={open}
+          autoHideDuration={3000}
+          onClose={handleClose}
+          message="Signin Successfull"
+          action={action}
+        />
       </div>
     </Base>
   );
