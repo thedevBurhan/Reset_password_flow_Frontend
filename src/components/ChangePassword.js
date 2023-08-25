@@ -25,7 +25,7 @@ const ChangePassword = () => {
 
         if (response.status === 200) {
           setMessage("Password reset successful")
-           history.push("/")
+           
 
         } else {
           setMessage("Password reset failed")
@@ -74,6 +74,7 @@ const ChangePassword = () => {
           <div className="otp-verify">
             <Button 
             type="submit"
+            onClick={()=>history.push("/")}
               className="button-Bg"
               variant="outlined"
             >
