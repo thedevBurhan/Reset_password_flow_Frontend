@@ -5,7 +5,8 @@ import { Button, CardContent, IconButton, Snackbar, TextField } from "@mui/mater
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import * as yup from "yup";
 import { useFormik } from "formik";
-
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // form validation
 export const filedValidationScheme = yup.object({
   email: yup.string().required("Please fill your email"),
@@ -53,6 +54,7 @@ const Login = () => {
     </React.Fragment>
   );
   // pop-up end------------------------------------------------------------------------------------------------------------------------
+  
   const handleLogin = async (userInfo) => {
     const res = await fetch(
       `https://reset-password-flow-backend.vercel.app/users/login`,
@@ -64,27 +66,48 @@ const Login = () => {
         },
       }
     );
+    console.log(userInfo);
     const data = await res.json();
      console.log(data) 
-     const datas=data.data;
-     if(datas.statusCode===400){
-      <Snackbar
-      open={open}
-      autoHideDuration={3000}
-      onClose={handleClose}
-      message={datas.message}
-      action={action}
-    />
-     }else{
-      <Snackbar
-      open={open}
-      autoHideDuration={3000}
-      onClose={handleClose}
-      message={datas.message}
-      action={action}
-    />
-      handleClick();
-     }  
+     const datas=data.data.statusCode;
+     console.log(datas);
+     if(datas ===404){
+      toast.success('😳User Not Found!', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
+        history.push("/register");
+     }else if(datas===400){
+      toast.error('Invalid Password 😳', {
+        position: "top-right",
+        autoClose:3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
+     
+     } else{
+      toast.success('😁❤️ Success!', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
+        handleClick();
+     } 
    
   };
   return (
