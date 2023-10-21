@@ -65,8 +65,27 @@ const Login = () => {
       }
     );
     const data = await res.json();
-     console.log(data)   
-    handleClick();
+     console.log(data) 
+     const datas=data.data;
+     if(datas.statusCode===400){
+      <Snackbar
+      open={open}
+      autoHideDuration={3000}
+      onClose={handleClose}
+      message={datas.message}
+      action={action}
+    />
+     }else{
+      <Snackbar
+      open={open}
+      autoHideDuration={3000}
+      onClose={handleClose}
+      message={datas.message}
+      action={action}
+    />
+      handleClick();
+     }  
+   
   };
   return (
     <Base title={"Login Your Account"}>
